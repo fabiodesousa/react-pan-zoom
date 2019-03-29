@@ -59,7 +59,7 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
   private panContainer: any;
   public state = this.getInitialState();
 
-  private onMouseDown = (e: React.MouseEvent<EventTarget>) => {
+  private onPointerDown = (e: React.PointerEvent<EventTarget>) => {
     if (!this.props.enablePan) {
       return;
     }
@@ -97,7 +97,7 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
     }
   }
 
-  private onMouseUp = () => {
+  private onPointerUp = () => {
     this.setState({
       dragging: false,
     });
@@ -118,7 +118,7 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
     return matrixData;
   };
 
-  private onMouseMove = (e: React.MouseEvent<EventTarget>) => {
+  private onPointerMove = (e: React.PointerEvent<EventTarget>) => {
     if (this.state.dragging) {
       const matrixData = this.getNewMatrixData(e.pageX, e.pageY);
       this.setState({
@@ -134,9 +134,9 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
     return (
       <div
         className={`pan-container ${this.props.className || ""}`}
-        onMouseDown={this.onMouseDown}
-        onMouseUp={this.onMouseUp}
-        onMouseMove={this.onMouseMove}
+        onPointerDown={this.onPointerDown}
+        onPointerUp={this.onPointerUp}
+        onPointerMove={this.onPointerMove}
         style={{
           height: this.props.height,
           userSelect: "none",
